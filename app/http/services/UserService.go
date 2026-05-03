@@ -1,7 +1,7 @@
 package services
 
 import (
-	"go-framework/app/models"
+	"gons/app/models"
 	"log/slog"
 
 	"github.com/golobby/container/v3"

@@ -1,7 +1,7 @@
 package main
 
 import (
-	"go-framework/bootstrap"
+	"gons/bootstrap"
 	"log"
 	"log/slog"
 	"os"

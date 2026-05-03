@@ -2,7 +2,7 @@ package seeders
 
 import (
 	"fmt"
-	"go-framework/app/models"
+	"gons/app/models"
 
 	"github.com/brianvoe/gofakeit/v6"
 

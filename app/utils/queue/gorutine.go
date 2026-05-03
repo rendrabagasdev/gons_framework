@@ -1,7 +1,7 @@
 package queue
 
 import (
-	"go-framework/app/contracts"
+	"gons/app/contracts"
 	"log/slog"
 )
 

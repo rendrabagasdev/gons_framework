@@ -1,9 +1,9 @@
 package bootstrap
 
 import (
-	"go-framework/config"
-	"go-framework/database/seeders"
-	"go-framework/routes"
+	"gons/database/seeders"
+	"gons/routes"
+	"gons/config"
 	"log"
 	"log/slog"
 	"os"

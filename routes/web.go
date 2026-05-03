@@ -1,8 +1,8 @@
 package routes
 
 import (
-	"go-framework/app/http/controllers"
-	"go-framework/app/http/middlewares"
+	"gons/app/http/controllers"
+	"gons/app/http/middlewares"
 
 	"github.com/gofiber/fiber/v3"
 )

@@ -1,4 +1,4 @@
-module go-framework
+module gons
 
 go 1.26.2
 

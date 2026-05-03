@@ -1,8 +1,8 @@
 package config
 
 import (
-	"go-framework/app/contracts"
-	"go-framework/app/utils/cache"
+	"gons/app/contracts"
+	"gons/app/utils/cache"
 
 	"github.com/golobby/container/v3"
 )

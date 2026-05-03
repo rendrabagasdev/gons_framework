@@ -1,8 +1,8 @@
 package config
 
 import (
-	"go-framework/app/contracts"
-	"go-framework/app/utils/queue"
+	"gons/app/contracts"
+	"gons/app/utils/queue"
 	"strconv"
 
 	"github.com/golobby/container/v3"

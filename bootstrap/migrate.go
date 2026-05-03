@@ -1,8 +1,8 @@
 package bootstrap
 
 import (
-	"go-framework/app/models"
-	"go-framework/config"
+	"gons/app/models"
+	"gons/config"
 	"log"
 	"log/slog"
 

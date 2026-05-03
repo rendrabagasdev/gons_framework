@@ -2,8 +2,8 @@ package config
 
 import (
 	"context"
-	"go-framework/app/contracts"
-	"go-framework/app/utils/storage"
+	"gons/app/contracts"
+	"gons/app/utils/storage"
 	"strconv"
 
 	"github.com/aws/aws-sdk-go-v2/aws"

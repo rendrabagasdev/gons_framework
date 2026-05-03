@@ -1,9 +1,9 @@
 package controllers
 
 import (
-	"go-framework/app/http/requests"
-	"go-framework/app/http/services"
-	utils "go-framework/app/utils/validator"
+	"gons/app/http/requests"
+	"gons/app/http/services"
+	utils "gons/app/utils/validator"
 	"log/slog"
 
 	"github.com/go-playground/validator/v10"

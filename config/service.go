@@ -1,6 +1,6 @@
 package config
 
-import "go-framework/app/http/services"
+import "gons/app/http/services"
 
 func RegisterService() {
 	services.AutoRegisterService()
