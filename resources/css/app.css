@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap');
+@import 'tailwindcss';
+
+@theme {
+    --font-outfit: 'Outfit', sans-serif;
+    
+    --color-gons-primary: #1D4ED8;
+    --color-gons-background: #FFFFFF;
+    --color-gons-text: #0F172A;
+    --color-gons-secondary: #E2E8F0;
+
+    --color-gons-background-dark: #0B1120;
+    --color-gons-text-dark: #F8FAFC;
+    --color-gons-secondary-dark: #1E293B;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+body {
+    font-family: var(--font-outfit);
+    @apply transition-colors duration-500;
+}
