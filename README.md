@@ -21,97 +21,97 @@
 
 ---
 
-## ✨ Fitur Utama
+## [+] Key Features
 
-| Fitur | Keterangan |
+| Feature | Description |
 |---|---|
-| 🚀 **Web Framework** | [Fiber v3](https://gofiber.io/) — framework HTTP cepat berbasis Fasthttp |
-| 🗄️ **ORM** | [GORM](https://gorm.io/) — mendukung MySQL, PostgreSQL, dan SQLite |
-| 💉 **Dependency Injection** | [Golobby Container v3](https://github.com/golobby/container) |
-| 🎨 **Template Engine** | HTML templating terintegrasi dengan [Vite](https://vitejs.dev/) |
-| 💾 **Cache** | Driver Memory (siap diperluas ke Redis) |
-| 📬 **Queue** | Driver Goroutine/Sync (siap diperluas ke Redis) |
-| 🗃️ **Storage** | Driver Lokal & S3-compatible (AWS S3, Supabase, MinIO) |
-| 🔐 **Middleware** | Auth Guard, CORS, Logger, Static Files |
-| 🔄 **Migrasi & Seeder** | Auto-migrate GORM + seeder via CLI |
-| 🔥 **Hot Reload** | Dukungan [Air](https://github.com/air-verse/air) |
+| **Web Framework** | [Fiber v3](https://gofiber.io/) — fast HTTP framework built on Fasthttp |
+| **ORM** | [GORM](https://gorm.io/) — supports MySQL, PostgreSQL, and SQLite |
+| **Dependency Injection** | [Golobby Container v3](https://github.com/golobby/container) |
+| **Template Engine** | HTML templating integrated with [Vite](https://vitejs.dev/) |
+| **Cache** | Memory driver (ready to extend with Redis) |
+| **Queue** | Goroutine/Sync driver (ready to extend with Redis) |
+| **Storage** | Local & S3-compatible drivers (AWS S3, Supabase, MinIO) |
+| **Middleware** | Auth Guard, CORS, Logger, Static Files |
+| **Migration & Seeder** | GORM auto-migrate + seeder via CLI |
+| **Hot Reload** | Supported via [Air](https://github.com/air-verse/air) |
 
 ---
 
-## 📁 Struktur Direktori
+## [/] Directory Structure
 
 ```
 gons/
 ├── app/
-│   ├── contracts/          # Interface / kontrak (Cache, Queue, Storage)
+│   ├── contracts/          # Interfaces / contracts (Cache, Queue, Storage)
 │   ├── http/
 │   │   ├── controllers/    # HTTP controllers
-│   │   ├── middlewares/    # HTTP middlewares (AuthGuard, dll)
-│   │   ├── requests/       # Struct validasi request
+│   │   ├── middlewares/    # HTTP middlewares (AuthGuard, etc.)
+│   │   ├── requests/       # Request validation structs
 │   │   └── services/       # Business logic
 │   ├── models/             # GORM models & model registry
 │   └── utils/
-│       ├── cache/          # Implementasi driver cache
-│       ├── queue/          # Implementasi driver queue
-│       ├── storage/        # Implementasi driver storage (Local & S3)
-│       └── validator/      # Helper validasi request
+│       ├── cache/          # Cache driver implementations
+│       ├── queue/          # Queue driver implementations
+│       ├── storage/        # Storage driver implementations (Local & S3)
+│       └── validator/      # Request validation helpers
 ├── bootstrap/
-│   ├── app.go              # Bootstrap aplikasi
-│   └── migrate.go          # Perintah migrasi
+│   ├── app.go              # Application bootstrap
+│   └── migrate.go          # Migration command
 ├── config/
-│   ├── cache.go            # Konfigurasi cache
-│   ├── database.go         # Konfigurasi database
-│   ├── env.go              # Helper pembaca env
-│   ├── queue.go            # Konfigurasi queue
+│   ├── cache.go            # Cache configuration
+│   ├── database.go         # Database configuration
+│   ├── env.go              # Environment variable helper
+│   ├── queue.go            # Queue configuration
 │   ├── registry.go         # Config provider registry
-│   ├── server.go           # Konfigurasi server Fiber
-│   ├── service.go          # Konfigurasi service DI
-│   ├── storage.go          # Konfigurasi storage
-│   └── vite.go             # Integrasi Vite helper
+│   ├── server.go           # Fiber server configuration
+│   ├── service.go          # DI service configuration
+│   ├── storage.go          # Storage configuration
+│   └── vite.go             # Vite integration helper
 ├── database/
 │   └── seeders/            # Database seeders
-├── public/                 # File statis (CSS, JS, gambar)
+├── public/                 # Static files (CSS, JS, images)
 ├── resources/
-│   └── views/              # Template HTML
+│   └── views/              # HTML templates
 ├── routes/
-│   ├── registry.go         # Pendaftaran semua route group
-│   └── web.go              # Definisi rute web
-├── .air.toml               # Konfigurasi hot reload Air
-├── .env                    # Variabel lingkungan
+│   ├── registry.go         # Route group registration
+│   └── web.go              # Web route definitions
+├── .air.toml               # Air hot reload configuration
+├── .env                    # Environment variables
 ├── go.mod
-├── main.go                 # Entry point aplikasi
-├── package.json            # Dependensi frontend (Vite)
-└── vite.config.js          # Konfigurasi Vite
+├── main.go                 # Application entry point
+├── package.json            # Frontend dependencies (Vite)
+└── vite.config.js          # Vite configuration
 ```
 
 ---
 
-## 🚀 Mulai Cepat
+## [>] Quick Start
 
-### Prasyarat
+### Prerequisites
 
 - [Go](https://go.dev/dl/) 1.21+
-- [Node.js](https://nodejs.org/) 18+ (untuk aset frontend)
-- Database pilihan: MySQL, PostgreSQL, atau SQLite
+- [Node.js](https://nodejs.org/) 18+ (for frontend assets)
+- A supported database: MySQL, PostgreSQL, or SQLite
 
-### Instalasi
+### Installation
 
 ```bash
-# Clone repositori
+# Clone the repository
 git clone https://github.com/rendrabagasdev/gons.git
 cd gons
 
-# Install dependensi Go
+# Install Go dependencies
 go mod tidy
 
-# Install dependensi Node.js (frontend / Vite)
+# Install Node.js dependencies (frontend / Vite)
 npm install
 
-# Salin file konfigurasi lingkungan
-cp .env .env.local  # sesuaikan isi .env sesuai kebutuhan
+# Copy the environment configuration file
+cp .env .env.local  # edit .env to match your environment
 ```
 
-### Konfigurasi `.env`
+### `.env` Configuration
 
 ```env
 #### DATABASE ENV ####
@@ -144,47 +144,47 @@ CORS_ALLOW_ORIGINS=*
 CORS_ALLOW_HEADERS=Origin,Content-Type,Accept,Authorization
 ```
 
-### Menjalankan Migrasi
+### Run Migrations
 
 ```bash
 go run main.go migrate
 ```
 
-### Menjalankan Seeder
+### Run Seeders
 
 ```bash
 go run main.go --seed
 ```
 
-### Menjalankan Server
+### Run the Server
 
 ```bash
-# Produksi
+# Production
 go run main.go
 
-# Development dengan hot reload (membutuhkan Air)
+# Development with hot reload (requires Air)
 go install github.com/air-verse/air@latest
 air
 ```
 
-Server akan berjalan di `http://localhost:8080`.
+The server will be available at `http://localhost:8080`.
 
 ---
 
-## 🗺️ Routing
+## [~] Routing
 
-Definisi rute terdapat di direktori `routes/`. Tambahkan rute baru di `routes/web.go`:
+Route definitions live in the `routes/` directory. Add new routes in `routes/web.go`:
 
 ```go
 func WebRoutes(app *fiber.App) {
     ctrl := controllers.NewController()
     userCtrl := controllers.NewUserController()
 
-    // Rute publik
+    // Public routes
     app.Get("/", ctrl.Welcome)
     app.Get("/users", userCtrl.GetAll)
 
-    // Rute terproteksi (membutuhkan header Authorization)
+    // Protected routes (require Authorization header)
     protected := app.Group("/protected")
     protected.Use(middlewares.AuthGuard())
     protected.Get("/users", userCtrl.GetAll)
@@ -193,7 +193,7 @@ func WebRoutes(app *fiber.App) {
 
 ---
 
-## 🏗️ Membuat Controller
+## [#] Creating a Controller
 
 ```go
 // app/http/controllers/PostController.go
@@ -219,24 +219,24 @@ func (c *PostController) Index(ctx fiber.Ctx) error {
 
 ---
 
-## 🗄️ Database (GORM)
+## [*] Database (GORM)
 
-Daftarkan model di `app/models/registry.go`:
+Register models in `app/models/registry.go`:
 
 ```go
 var ModelRegistry = []interface{}{
     &User{},
-    &Post{}, // tambahkan model baru di sini
+    &Post{}, // add new models here
 }
 ```
 
-Jalankan migrasi:
+Run migrations:
 
 ```bash
 go run main.go migrate
 ```
 
-### Driver yang Didukung
+### Supported Drivers
 
 | Driver | `DB_DRIVER` |
 |---|---|
@@ -246,9 +246,9 @@ go run main.go migrate
 
 ---
 
-## 💾 Cache
+## [-] Cache
 
-Gunakan interface `contracts.Cache` melalui dependency injection:
+Use the `contracts.Cache` interface via dependency injection:
 
 ```go
 import "gons/app/contracts"
@@ -258,13 +258,13 @@ type MyService struct {
 }
 ```
 
-Driver yang tersedia: `memory` (default), `redis` (segera hadir).
+Available drivers: `memory` (default), `redis` (coming soon).
 
 ---
 
-## 📬 Queue
+## [-] Queue
 
-Gunakan interface `contracts.Queue` melalui dependency injection:
+Use the `contracts.Queue` interface via dependency injection:
 
 ```go
 import "gons/app/contracts"
@@ -274,13 +274,13 @@ type MyService struct {
 }
 ```
 
-Driver yang tersedia: `sync`, `goroutine`, `redis` (segera hadir).
+Available drivers: `sync`, `goroutine`, `redis` (coming soon).
 
 ---
 
-## 🗃️ Storage
+## [-] Storage
 
-Gunakan interface `contracts.Storage` melalui dependency injection:
+Use the `contracts.Storage` interface via dependency injection:
 
 ```go
 import "gons/app/contracts"
@@ -290,7 +290,7 @@ type MyService struct {
 }
 ```
 
-### Konfigurasi S3 / Supabase / MinIO
+### S3 / Supabase / MinIO Configuration
 
 ```env
 STORAGE_DISK=s3
@@ -304,26 +304,26 @@ S3_USE_PATH_STYLE=true
 
 ---
 
-## 🔐 Middleware
+## [!] Middleware
 
 ### AuthGuard
 
-Middleware `AuthGuard` memeriksa keberadaan header `Authorization`. Tambahkan ke rute manapun:
+The `AuthGuard` middleware checks for the presence of the `Authorization` header. Apply it to any route group:
 
 ```go
 protected := app.Group("/api")
 protected.Use(middlewares.AuthGuard())
 ```
 
-### Menambah Middleware Kustom
+### Adding Custom Middleware
 
-Buat file baru di `app/http/middlewares/` dan implementasikan `fiber.Handler`.
+Create a new file in `app/http/middlewares/` and implement `fiber.Handler`.
 
 ---
 
-## 🎨 Templating (HTML + Vite)
+## [=] Templating (HTML + Vite)
 
-Template HTML disimpan di `resources/views/`. Gunakan helper `vite` di template untuk menyertakan aset yang dikelola Vite:
+HTML templates are stored in `resources/views/`. Use the `vite` helper in templates to include Vite-managed assets:
 
 ```html
 <!-- resources/views/layouts/main.html -->
@@ -332,7 +332,7 @@ Template HTML disimpan di `resources/views/`. Gunakan helper `vite` di template 
 </head>
 ```
 
-Build aset frontend:
+Build frontend assets:
 
 ```bash
 npm run build
@@ -340,19 +340,19 @@ npm run build
 
 ---
 
-## 🛠️ Teknologi yang Digunakan
+## [i] Tech Stack
 
-- [Go](https://go.dev/) — bahasa pemrograman utama
+- [Go](https://go.dev/) — primary programming language
 - [Fiber v3](https://gofiber.io/) — web framework
 - [GORM](https://gorm.io/) — ORM
 - [Golobby Container](https://github.com/golobby/container) — dependency injection
-- [godotenv](https://github.com/joho/godotenv) — manajemen file .env
-- [go-playground/validator](https://github.com/go-playground/validator) — validasi input
-- [Vite](https://vitejs.dev/) — build tool frontend
+- [godotenv](https://github.com/joho/godotenv) — `.env` file management
+- [go-playground/validator](https://github.com/go-playground/validator) — input validation
+- [Vite](https://vitejs.dev/) — frontend build tool
 - [Air](https://github.com/air-verse/air) — hot reload
 
 ---
 
-## 📄 Lisensi
+## [c] License
 
-Proyek ini dilisensikan di bawah [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
