@@ -41,7 +41,7 @@
 To make development easier, install the Gons CLI tool globally:
 
 ```bash
-go install github.com/rendrabagasdev/gons_cli@latest
+go install github.com/rendrabagasdev/gons@latest
 ```
 
 *Make sure your `$GOPATH/bin` is in your system `PATH`.*
