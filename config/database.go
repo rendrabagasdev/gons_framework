@@ -2,7 +2,9 @@ package config
 
 import (
 	"fmt"
+	"log"
 	"log/slog"
+	"strings"
 
 	"github.com/golobby/container/v3"
 	"gorm.io/driver/mysql"
@@ -18,12 +20,19 @@ func RegistererDatabase() {
 		// Attempt to create database if it doesn't exist
 		createDatabaseIfNotExist(driver, host, port, user, pass, name)
 
-		slog.Info(fmt.Sprintf("Gons: connecting to database [%s] on [%s:%s]...", name, host, port))
+		log.Printf("Gons: connecting to database [%s] on [%s:%s]...\n", name, host, port)
 
 		db, err := gorm.Open(getDialector(driver, host, port, user, pass, name), &gorm.Config{})
 		if err != nil {
+			log.Printf("Gons: database connection error: %v\n", err)
 			slog.Error("Gons: database connection error: " + err.Error())
 		}
+
+		// Verify active database
+		var currentDB string
+		db.Raw("SELECT current_database()").Scan(&currentDB)
+		log.Printf("Gons: connection verified! Active database is: [%s]\n", currentDB)
+
 		return db
 	})
 	if err != nil {
@@ -54,7 +63,7 @@ func getDialector(driver, host, port, user, pass, name string) gorm.Dialector {
 		dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/%s?charset=utf8mb4&parseTime=True&loc=Local", user, pass, host, port, name)
 		return mysql.Open(dsn)
 	case "postgres", "postgresql", "psql", "postgree":
-		dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=disable", host, user, pass, name, port)
+		dsn := fmt.Sprintf("postgres://%s:%s@%s:%s/%s?sslmode=disable", user, pass, host, port, strings.ToLower(name))
 		return postgres.Open(dsn)
 	case "sqlite":
 		return sqlite.Open(name + ".db")
@@ -77,7 +86,7 @@ func createDatabaseIfNotExist(driver, host, port, user, pass, name string) {
 		dialector = mysql.Open(dsn)
 	} else if driver == "postgres" || driver == "postgresql" || driver == "psql" || driver == "postgree" {
 		// Connect to default 'postgres' database to create the new one
-		dsn = fmt.Sprintf("host=%s user=%s password=%s dbname=postgres port=%s sslmode=disable", host, user, pass, port)
+		dsn = fmt.Sprintf("postgres://%s:%s@%s:%s/postgres?sslmode=disable", user, pass, host, port)
 		dialector = postgres.Open(dsn)
 	} else {
 		return
@@ -94,11 +103,12 @@ func createDatabaseIfNotExist(driver, host, port, user, pass, name string) {
 	if driver == "mysql" {
 		db.Exec(fmt.Sprintf("CREATE DATABASE IF NOT EXISTS %s", name))
 	} else {
-		// Postgres check if exists
+		// Postgres check if exists (Postgres stores identifiers in lowercase)
 		var exists int
-		db.Raw("SELECT 1 FROM pg_database WHERE datname = ?", name).Scan(&exists)
+		db.Raw("SELECT 1 FROM pg_database WHERE LOWER(datname) = LOWER(?)", name).Scan(&exists)
 		if exists == 0 {
-			db.Exec(fmt.Sprintf("CREATE DATABASE %s", name))
+			log.Printf("Gons: database [%s] not found, creating now...\n", name)
+			db.Exec(fmt.Sprintf("CREATE DATABASE %s", strings.ToLower(name)))
 		}
 	}
 }
