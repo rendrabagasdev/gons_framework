@@ -4,13 +4,16 @@ import (
 	"fmt"
 	"log"
 	"log/slog"
+	"os"
 	"strings"
+	"time"
 
 	"github.com/golobby/container/v3"
 	"gorm.io/driver/mysql"
 	"gorm.io/driver/postgres"
 	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"gorm.io/gorm/logger"
 )
 
 func RegistererDatabase() {
@@ -20,9 +23,24 @@ func RegistererDatabase() {
 		// Attempt to create database if it doesn't exist
 		createDatabaseIfNotExist(driver, host, port, user, pass, name)
 
+		// GORM Logging to database.log
+		file, _ := os.OpenFile("database.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0666)
+		newLogger := logger.New(
+			log.New(file, "\r\n", log.LstdFlags),
+			logger.Config{
+				SlowThreshold:             time.Second,
+				LogLevel:                  logger.Info,
+				IgnoreRecordNotFoundError: true,
+				ParameterizedQueries:      false,
+				Colorful:                  false,
+			},
+		)
+
 		log.Printf("Gons: connecting to database [%s] on [%s:%s]...\n", name, host, port)
 
-		db, err := gorm.Open(getDialector(driver, host, port, user, pass, name), &gorm.Config{})
+		db, err := gorm.Open(getDialector(driver, host, port, user, pass, name), &gorm.Config{
+			Logger: newLogger,
+		})
 		if err != nil {
 			log.Printf("Gons: database connection error: %v\n", err)
 			slog.Error("Gons: database connection error: " + err.Error())
