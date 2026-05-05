@@ -4,10 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev" : "vite",
-    "build" : "vite build",
-    "preview" : "vite preview"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "air": "air",
+    "migrate": "go run main.go migrate",
+    "seed": "go run main.go --seed",
+    "start": "go run main.go"
   },
   "keywords": [],
   "author": "",

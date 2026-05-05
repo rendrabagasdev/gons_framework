@@ -3,16 +3,20 @@ package config
 import (
 	"fmt"
 	"html/template"
+	"os"
 	"strings"
 )
 
 func Vitehelper(entries ...string) template.HTML {
-	env := GetEnv("APP_ENV", "development")
-	viteHost := "http://localhost:5173"
-
+	hotFile := "public/hot"
 	var htmlTags []string
 
-	if env == "development" {
+	if _, err := os.Stat(hotFile); err == nil {
+		content, _ := os.ReadFile(hotFile)
+		viteHost := strings.TrimSpace(string(content))
+		if viteHost == "" {
+			viteHost = "http://localhost:5173"
+		}
 
 		htmlTags = append(htmlTags, fmt.Sprintf(`<script type="module" src="%s/@vite/client"></script>`, viteHost))
 
