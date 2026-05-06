@@ -1,8 +1,9 @@
 package database
 
 import (
-	"log/slog"
 	"gons/internal/registry"
+	"gons/pkg/env"
+	"log/slog"
 
 	"github.com/golobby/container/v3"
 	"github.com/redis/go-redis/v9"
@@ -18,12 +19,14 @@ func RegisterDatabase() {
 		slog.Error("Gons: database register error: " + err.Error())
 	}
 
-	err = container.Singleton(func() *redis.Client {
-		return NewRedisClient()
-	})
+	if env.Get("CACHE_DRIVER", "") == "redis" || env.Get("QUEUE_DRIVER", "") == "redis" {
+		err = container.Singleton(func() *redis.Client {
+			return NewRedisClient()
+		})
 
-	if err != nil {
-		slog.Error("Gons: redis register error: " + err.Error())
+		if err != nil {
+			slog.Error("Gons: redis register error: " + err.Error())
+		}
 	}
 }
 
