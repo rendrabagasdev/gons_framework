@@ -1,39 +1,33 @@
-# Binaries for programs and plugins
+# Binaries
+gons
+main
 *.exe
 *.exe~
 *.dll
 *.so
 *.dylib
+bin/
+tmp/
 
-# Test binary, built with `go test -c`
-*.test
+# Logs
+*.log
+logger.log
 
-# Output of the go coverage tool, specifically when used with Litmus
-*.out
-
-# Dependency directories (remove the comment below to include it)
-# vendor/
-
-# Go workspace file
-go.work
-
-# Node.js
-node_modules/
-dist/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Vite
-public/js/
-public/css/
-public/vite.svg
-.vite/
-
-# Environment files
+# Environment variables
 .env
 .env.local
-.env.*.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# Databases
+*.db
+*.db-journal
+
+# Dependencies
+vendor/
+node_modules/
+package-lock.json
 
 # IDEs
 .idea/
@@ -41,8 +35,6 @@ public/vite.svg
 *.swp
 *.swo
 
-# Project specific
-GO_FRAMEWORK.db
-logger.log
-tmp/
-build-errors.log
+# Build artifacts
+public/build/
+dist/
