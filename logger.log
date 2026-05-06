@@ -52,3 +52,10 @@ time=2026-05-03T05:30:57.058+07:00 level=ERROR msg="Failed to register config" e
 time=2026-05-03T05:31:03.519+07:00 level=ERROR msg="Failed to register config" error="container: resolver function signature is invalid - it must return abstract, or abstract and error"
 time=2026-05-03T05:31:13.895+07:00 level=ERROR msg="Failed to register config" error="container: resolver function signature is invalid - it must return abstract, or abstract and error"
 time=2026-05-03T05:31:20.041+07:00 level=ERROR msg="Failed to register config" error="container: resolver function signature is invalid - it must return abstract, or abstract and error"
+time=2026-05-06T01:47:15.924+07:00 level=ERROR msg="Unsupported database driver" driver=""
+time=2026-05-06T02:46:16.052+07:00 level=ERROR msg="file .env not found" error="unexpected character \"\\u0096\" in variable name near \"▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\""
+time=2026-05-06T02:46:16.053+07:00 level=ERROR msg="Unsupported database driver" driver=""
+time=2026-05-06T02:48:04.731+07:00 level=ERROR msg="file .env not found" error="unexpected character \"\\u0096\" in variable name near \"▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\""
+time=2026-05-06T02:48:04.732+07:00 level=ERROR msg="Unsupported database driver" driver=""
+time=2026-05-06T10:31:17.224+07:00 level=ERROR msg="file .env not found" error="unexpected character \"\\u0096\" in variable name near \"▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄▄\""
+time=2026-05-06T10:31:17.226+07:00 level=INFO msg="Database connected successfully" driver=sqlite database=gons.db

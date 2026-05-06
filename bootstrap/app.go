@@ -3,23 +3,19 @@ package bootstrap
 import (
 	"gons/database/seeders"
 	"gons/routes"
-	"gons/config"
+	"gons/internal/registry"
+	"gons/internal/server"
 	"log"
 	"log/slog"
 	"os"
 
 	"github.com/gofiber/fiber/v3"
 	"github.com/golobby/container/v3"
-	"github.com/joho/godotenv"
 	"gorm.io/gorm"
 )
 
 func RunApp() {
-	if err := godotenv.Load(); err != nil {
-		log.Println("Warning: .env file not found, using default values")
-	}
-
-	config.AutoRegisterConfig()
+	registry.AutoRegisterConfig()
 
 	if len(os.Args) > 1 && os.Args[1] == "--seed" {
 		var db *gorm.DB
@@ -37,9 +33,9 @@ func RunApp() {
 	}
 
 	routes.RegisterRoute(app)
-	address := config.GetServerAddress()
+	address := server.GetServerAddress()
 
-	config.PrintBanner()
+	server.PrintBanner()
 	if err := app.Listen(address); err != nil {
 		log.Fatalf("Server crash: %v", err)
 	}

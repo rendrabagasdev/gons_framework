@@ -3,7 +3,7 @@ package controllers
 import (
 	"gons/app/http/requests"
 	"gons/app/http/services"
-	utils "gons/app/utils/validator"
+	utils "gons/pkg/utils/validator"
 	"log/slog"
 
 	"github.com/go-playground/validator/v10"

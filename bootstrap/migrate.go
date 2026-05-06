@@ -2,7 +2,7 @@ package bootstrap
 
 import (
 	"gons/app/models"
-	"gons/config"
+	"gons/internal/database"
 	"log"
 	"log/slog"
 
@@ -11,7 +11,7 @@ import (
 )
 
 func Migrate() {
-	config.RegistererDatabase()
+	database.RegisterDatabase()
 	var db *gorm.DB
 
 	err := container.Resolve(&db)
